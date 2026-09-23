@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123741">
+  <title>Codex Pet — Nhắc bạn vận động</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; background: #f7f4e9; color: #123741; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; }
+    header { padding: 22px max(24px, calc((100vw - 1050px) / 2)); background: #123741; color: white; font-weight: 800; letter-spacing: .04em; }
+    main { width: min(1050px, calc(100% - 48px)); margin: auto; }
+    .hero { padding: clamp(55px, 10vw, 115px) 0 70px; display: grid; grid-template-columns: 1.3fr .7fr; gap: 36px; align-items: center; }
+    .eyebrow { color: #158d8a; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: .13em; }
+    h1 { font-size: clamp(44px, 7vw, 78px); line-height: 1.02; letter-spacing: -.055em; margin: 16px 0 22px; }
+    p { font-size: 19px; line-height: 1.6; max-width: 650px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    button, a.button { font: inherit; font-weight: 800; border-radius: 14px; padding: 15px 20px; border: 2px solid #123741; cursor: pointer; text-decoration: none; }
+    button { background: #ffc45f; color: #123741; box-shadow: 0 5px 0 #123741; }
+    button:hover { transform: translateY(2px); box-shadow: 0 3px 0 #123741; }
+    a.button { background: transparent; color: #123741; }
+    .card { background: #d9f3e9; border: 3px solid #123741; border-radius: 32px; padding: 28px; box-shadow: 12px 12px 0 #123741; transform: rotate(3deg); }
+    .card strong { font-size: 38px; display: block; margin-bottom: 14px; }
+    .card span { font-size: 17px; line-height: 1.5; }
+    .details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding-bottom: 72px; }
+    .detail { padding: 22px; border: 2px solid #123741; border-radius: 20px; background: white; }
+    .detail b { display: block; font-size: 21px; margin-bottom: 7px; }
+    .detail span { line-height: 1.5; }
+    .embed { margin: 0 0 90px; padding: 28px; border-radius: 24px; background: #123741; color: white; }
+    .embed h2 { margin-top: 0; }
+    .embed code { display: block; overflow-x: auto; padding: 18px; border-radius: 12px; background: #09252d; color: #d5fff0; white-space: pre; }
+    .embed p { font-size: 16px; }
+    @media (max-width: 700px) { .hero { grid-template-columns: 1fr; } .card { max-width: 380px; } .details { grid-template-columns: 1fr; } }
+  </style>
+  <script src="./codex-pet.js" defer></script>
+</head>
+<body>
+  <header>CODEX PET · WEB</header>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Một lời nhắc dễ thương cho ngày làm việc</div>
+        <h1>Đến giờ đứng dậy một chút rồi.</h1>
+        <p>Pet sẽ ghé qua mỗi 25 phút để nhắc bạn vận động. Kéo pet đến chỗ bạn thích, hoặc nhấn 3 lần để tắt lời nhắc hiện tại.</p>
+        <div class="actions">
+          <button type="button" id="try-pet">Xem pet ngay</button>
+          <a class="button" href="#embed">Cách nhúng vào web</a>
+        </div>
+      </div>
+      <div class="card" aria-label="Chu kỳ nhắc vận động">
+        <strong>25 phút</strong>
+        <span>Pet xuất hiện trong tối đa 2 phút, rồi bắt đầu đếm lại chu kỳ tiếp theo.</span>
+      </div>
+    </section>
+    <section class="details" aria-label="Cách sử dụng">
+      <div class="detail"><b>🐾 Di chuyển</b><span>Pet tự đi dọc phía dưới cửa sổ trình duyệt.</span></div>
+      <div class="detail"><b>✋ Kéo thả</b><span>Đặt pet vào vị trí dễ nhìn. Pet sẽ đứng yên trong lần nhắc đó.</span></div>
+      <div class="detail"><b>👆 Nhấn 3 lần</b><span>Nhấn pet 3 lần để kết thúc lời nhắc và bắt đầu chu kỳ mới.</span></div>
+    </section>
+    <section class="embed" id="embed">
+      <h2>Nhúng vào website</h2>
+      <p>Đặt <code>codex-pet.js</code> trên cùng máy chủ với website, rồi thêm thẻ này trước <code>&lt;/body&gt;</code>:</p>
+      <code>&lt;script src="/codex-pet.js" defer&gt;&lt;/script&gt;</code>
+      <p>Widget tự chạy sau khi trang tải xong. Nút “Xem pet ngay” ở trang này chỉ dùng để xem thử mà không phải chờ 25 phút.</p>
+    </section>
+  </main>
+  <script>
+    document.getElementById("try-pet").addEventListener("click", () => {
+      document.querySelector("codex-pet")?.showNow();
+    });
+  </script>
+</body>
+</html>
